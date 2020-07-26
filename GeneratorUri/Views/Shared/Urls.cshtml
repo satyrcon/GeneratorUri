@@ -1,0 +1,16 @@
+﻿    @if (ViewBag.Urls.Count != 0)
+    {
+        <br/>
+        <br/>
+        <h1>Ранее сокращенные ссылки</h1>
+        <hr/>
+        @foreach (var url in ViewBag.Urls)
+        {
+
+            <p><a href="https://@this.Context.Request.Host/@url.ShortUrl">https://@this.Context.Request.Host/@url.ShortUrl</a> Clicks: @url.Clicks</p>
+            <p>Full Url: @url.FullUrl</p>
+            <hr/>
+        }
+
+    }
+

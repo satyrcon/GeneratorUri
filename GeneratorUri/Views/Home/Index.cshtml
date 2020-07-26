@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model GeneratorUri.Models.Url
+
+@inject SignInManager<IdentityUser> SignInManager
+
+    <div class="text-center">
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <h1 class="display-4">Генератор коротких ссылок</h1>
+            <p>Чтобы сделать короткую ссылку необходимо зарегистрироваться или войти</p>
+
+            <partial name="CookieUrls" />
+        }
+        else
+        {
+            <h1 class="display-4">Генератор коротких ссылок</h1>
+            <form action="CreateUrl" method="post">
+                <div class="form-group">
+                    <hr/>
+                    <label>Введите ссылку для сокращения</label>
+                    <input asp-for="FullUrl" class="form-control"/>
+                    <span class="text-danger"></span>
+                    <span asp-validation-for="FullUrl"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary">
+                </div>
+            </form>
+
+            <partial name="Urls"/>
+        }
+    </div>
